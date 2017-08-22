@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style type="text/css">
+	table, td{
+
+		border-style: dotted;
+		border-style: all;
+		border: 1px dotted gray;
+		width: 50%;
+
+	}
+	textarea{
+		height: 90px;
+	}
+
+
+	input[type="radio"] {
+ 	 -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+}
+	td{
+		width: 30px;
+	}
+	h1{
+		text-align: center;
+	}
+	input{
+		size: 50px;
+	}
+</style>
+
+	<title style="text-align: center;">Job Details</title>
+</head>
+<body>
+
+<h1>Job Details</h1>
+<form>
+<fieldset style="border-style: dotted;" style="border-color: gray;">
+	<table align="center">
+		<tr>
+			<td>Job Title:</td>
+			<td><input type="text" name="job title"></td>
+		</tr>
+		<tr>
+			<td>Description:</td>
+			<td><textarea id="description" ></textarea><br>
+			<p>Brief Description should have at most 500 characters</p></td>
+		</tr>
+		<tr>
+			<td>Company Name:</td>
+			<td><input type="text" name="company name"></td>
+		</tr>
+		<tr>
+			<td>Contact number:</td>
+			<td><input type="text" name="contact number"></td>
+		</tr>
+		<tr>
+			<td>Contact person:</td>
+			<td><input type="text" name="contact person"></td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td><input type="Email" name="email"></td>
+		</tr>
+		<tr>
+			<td>Work status:</td>
+			<td><input type="radio" name="work status" value="Full Time">Full Time<input type="radio" name="work status"  value="Part Time">Part Time<input type="radio" name="work status" value="Per Dim">Per Dim<input type="radio" name="work status" value="Others">Others</td>
+		</tr>
+		<tr>
+			<td>Salary</td>
+			<td><input type="text" name="salary"><select id="currency" name="currency"><option label="US Dollar" value="us dollar"></option></select>
+			<select id="period" name="period"><option label="Yearly" value="yearly"></option></select></td>
+		</tr>
+		<tr>
+			<td>Experience (Years)</td>
+			<td><input type="number" name="Experience"></td>
+		</tr>
+		<tr>
+			<td>Locations</td>
+			<td><input type="text" name="locations"></td>
+		</tr>
+		<tr>
+			<td>Qualifications</td>
+			<td><select size="4" id="firstlist" multiple="multiple"><option label="Any" value="Any"></option><option label="High School" value="High School"></option><option label="Associate" value="Associate"></option><option label="Pre Bachelors" value="Pre Bachelors"></option></select><input type="button" value="ADD>>" onclick="Add()"><input type="button" value="<<Remove" onclick="Remove()"><select size="4" id="secondlist" multiple="multiple" value="Qualifications"><option label="Any" value="Any"></option></select></td>
+		</tr>
+		<tr>
+			<td style="text-align: right"><input type="submit" value="Submit" ></td>
+			<td><input type="reset" value="Reset" onclick="Reload()"></td>
+		</tr>
+
+
+	</table>
+
+</fieldset>
+</form>
+<script>
+	
+	function Add(){
+		
+
+		var destination = document.getElementById("secondlist");
+		var firstlist = document.getElementById("firstlist");
+		for (var i = firstlist.options.length - 1; i >= 0; i--) {
+		 	if(firstlist.options[i].selected){
+		 	var t = document.createTextNode(firstlist.options[i].value);
+		 	var node = document.createElement("option");
+			node.setAttribute("value",firstlist.options[i].value);
+			node.appendChild(t);
+		 	destination.appendChild(node);
+		 	firstlist.removeChild(firstlist.options[i]);
+		 	}
+		}
+		 	
+		 
+	}
+
+	function Remove(){
+		var firstlist = document.getElementById("firstlist");
+		var secondlist = document.getElementById("secondlist");
+		for (var i = secondlist.options.length - 1; i >= 0; i--) {
+		 	if(secondlist.options[i].selected){
+		 		var t = document.createTextNode(secondlist.options[i].value);
+		 		var node = document.createElement("option");
+		 		node.setAttribute("value",secondlist.options[i].value);
+		 		node.appendChild(t);
+		 		firstlist.appendChild(node);
+		 		secondlist.removeChild(secondlist.options[i]);
+		 	
+		 	}
+		}
+	}
+
+	function Reload(){
+		location.reload();
+	}
+</script>
+</body>
+</html>
